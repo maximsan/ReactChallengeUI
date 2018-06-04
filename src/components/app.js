@@ -1,6 +1,6 @@
 import React from "react";
 import SearchBar from "./searchBar";
-import load from "./utils/load";
+import load from "../actions/load";
 import ActiveUser from "./activeUser";
 import UserList from "./userList";
 import ToolBar from "./toolBar";

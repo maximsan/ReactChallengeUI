@@ -1,33 +1,6 @@
 import React from "react";
 
 export default ({ update, data, initilData, isSorted }) => {
-  //   const sortAsc = type => {
-  //     const sorted = [].slice.call(data).sort((a, b) => {
-  //       if (a[type] === b[type]) {
-  //         return 0;
-  //       }
-  //       return a[type] > b[type] ? 1 : -1;
-  //     });
-
-  //     update({
-  //       activeUser: 0,
-  //       data: sorted
-  //     });
-  //   };
-
-  //   const sortDesc = type => {
-  //     const sorted = [].slice.call(data).sort((a, b) => {
-  //       if (a[type] === b[type]) {
-  //         return 0;
-  //       }
-  //       return a[type] < b[type] ? 1 : -1;
-  //     });
-
-  //     update({
-  //       activeUser: 0,
-  //       data: sorted
-  //     });
-  //   };
 
   const sort = type => {
     let direction = isSorted ? 1 : -1;
