@@ -27,6 +27,7 @@ export default class UserList extends React.Component {
             <th>Name</th>
             <th>Age</th>
             <th>Phone</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{users}</tbody>

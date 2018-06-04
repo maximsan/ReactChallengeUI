@@ -1,12 +1,12 @@
 import React from "react";
 
-export default ({ data, active }) => {
-  if (!data || !data[active]) return <h3>Nothing was found...</h3>;
+export default ({ data, activeUser }) => {
+  if (!data || !data[activeUser]) return <h3>Nothing was found...</h3>;
 
-  const user = data[active];
+  const user = data[activeUser];
 
   return (
-    <div className="thumbnail position-fixed">
+    <div className="thumbnail position-fixed mt-5">
       <img className="card-img-top" src={`images/${user.image}.svg`} alt={user.image} />
 
       <div className="thumbnail-caption">

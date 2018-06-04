@@ -1,6 +1,8 @@
 import React from "react";
 import $ from 'jquery';
 
+import save from '../actions/save';
+
 export default class AddUser extends React.Component {
 
   constructor(props) {
@@ -42,11 +44,11 @@ export default class AddUser extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const form = {
-      Name: this.state.Name,
-      Age: this.state.Age,
-      Phone: this.state.Phone,
-      Phrase: this.state.Phrase,
-      Image: this.state.Image
+      name: this.state.name,
+      age: this.state.age,
+      phone: this.state.phone,
+      phrase: this.state.phrase,
+      image: this.state.image
     }
     this.saveUser(`${baseUrl}/api/users`, form);
     $(this.modal).modal('hide');
@@ -54,41 +56,41 @@ export default class AddUser extends React.Component {
 
   onHandleChangeName(e) {
     e.preventDefault();
-    const Name = e.target.value;
+    const name = e.target.value;
     this.setState({
-      Name
+      name
     })
   }
 
   onHandleChangeAge(e) {
     e.preventDefault();
-    const Age = e.target.value;
+    const age = e.target.value;
     this.setState({
-      Age
+      age
     })
   }
 
   onHandleChangeImage(e) {
     e.preventDefault();
-    const Image = e.target.value;
+    const image = e.target.value;
     this.setState({
-      Image
+      image
     })
   }
 
   onHandleChangePhone(e) {
     e.preventDefault();
-    const Phone = e.target.value;
+    const phone = e.target.value;
     this.setState({
-      Phone
+      phone
     })
   }
 
   onHandleChangePhrase(e) {
     e.preventDefault();
-    const Phrase = e.target.value;
+    const phrase = e.target.value;
     this.setState({
-      Phrase
+      phrase
     })
   }
 
@@ -172,7 +174,8 @@ export default class AddUser extends React.Component {
                 <button
                   className="btn btn-primary"
                   onClick={this.handleSubmit}
-                >Submit</button>
+                >Submit
+                </button>
               </div>
             </div>
           </div>
