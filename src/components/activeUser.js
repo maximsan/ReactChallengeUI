@@ -1,13 +1,14 @@
 import React from "react";
 
 export default ({ data, active }) => {
-  if (!data || !data[active]) return <h3>Nothing was found</h3>;
+  if (!data || !data[active]) return <h3>Nothing was found...</h3>;
 
   const user = data[active];
 
   return (
     <div className="thumbnail position-fixed">
-      <img className="mb-0" src={`images/${user.image}.svg`} alt={user.image} />
+      <img className="card-img-top" src={`images/${user.image}.svg`} alt={user.image} />
+
       <div className="thumbnail-caption">
         <table className="user-info table table-responsive">
           <tbody>
@@ -31,14 +32,14 @@ export default ({ data, active }) => {
         </table>
 
         <div >
-          
-        <span className=""><b>Phraze:</b></span>
-         <br />
-            <blockquote className="text-center mt-4">
-              <i className="fa fa-quote-left mr-2 align-top" aria-hidden="true"></i>
-              {user.phrase}
-              <hr />
-            </blockquote>
+          <span className=""><b>Phraze:</b></span>
+          <br />
+          <blockquote className="text-center mt-4">
+            <i className="fa fa-quote-left mr-2 align-top"
+              aria-hidden="true"></i>
+            {user.phrase}
+            <hr />
+          </blockquote>
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ export default class UserList extends React.Component {
         <UserData
           user={user}
           index={index}
+          data={data}
           key={`user - ${index}`}
           update={update}
         />

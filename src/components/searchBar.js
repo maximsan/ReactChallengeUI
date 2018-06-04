@@ -2,14 +2,14 @@ import React from "react";
 
 class SearchBar extends React.Component {
   dataSearch = e => {
-    const data = this.props.data;
+    const { data, update } = this.props;
     const value = e.target.value.toLowerCase();
 
     const filter = data.filter(user => {
       return user.name.toLowerCase().includes(value);
     });
 
-    this.props.update({
+    update({
       data: filter,
       active: 0,
       term: value
@@ -17,13 +17,15 @@ class SearchBar extends React.Component {
   };
 
   render() {
+    const { term } = this.props;
     return (
-      <div>
+      <div className="search-name">
         <input
           className="form-control"
           type="text"
-          value={this.props.term}
-          placeholder="Please input here, who are you looking for?"
+          aria-label="Search"
+          value={term}
+          placeholder="Search in here..."
           onChange={this.dataSearch}
         />
       </div>
