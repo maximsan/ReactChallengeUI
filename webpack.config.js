@@ -53,7 +53,15 @@ module.exports = {
       names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
+<<<<<<< HEAD
       template: 'src/index.html'
+=======
+      template: "src/index.html"
+    }),
+    new webpack.DefinePlugin({
+      //defive windows scope variables for react ensure additional checking in production
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+>>>>>>> ae0636894140488d3e790a9ce31059ecf8e63217
     })
   ]
 };
