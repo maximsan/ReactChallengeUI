@@ -75,7 +75,7 @@ export default class App extends React.Component {
         </div>
         <div className="row mt-2 mb-2">
           <ToolBar
-            update={this.update}
+            update={this.updateData}
             data={data}
             isSorted={isSorted}
             initialData={this.initialData}
