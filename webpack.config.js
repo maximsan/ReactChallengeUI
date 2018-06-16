@@ -2,11 +2,19 @@ var webpack = require("webpack");
 var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const VENDOR_LIBS = [
+  "axios", "bootstrap", "dreamjs", "jquery", "lodash",
+  "popper.js", "react", "react-dom", "react-redux", "redux", "redux-promise"
+];
+
 module.exports = {
   devtool: 'inline-source-map',
-  entry: { bundle: "./src/index.js" },
+  entry: { 
+    bundle: "./src/index.js",
+    vendor: VENDOR_LIBS
+  },
   output: {
-    path: path.join(__dirname, "dist"),,
+    path: path.join(__dirname, "dist"), 
     publicPath: "/",
     filename: "[name].[chunkhash].js"
   },
@@ -16,9 +24,6 @@ module.exports = {
       {
         exclude: /node_modules/,
         use: "babel-loader",
-        query: {
-          presets: ["react", "es2015", "stage-1"]
-        },
         test: /\.js$/
       },
       {
@@ -41,14 +46,14 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ["vendor", "manifest"]
+      names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
-      template: "src/index.html"
-    }), 
-    new webpack.DefinePlugin({ //defive windows scope variables for react ensure additional checking in production
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+      template: 'src/index.html'
     })
   ]
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  dataSearch = e => {
+  dataSearch (e) {
     const { data, update } = this.props;
     const value = e.target.value.toLowerCase();
 
@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
           aria-label="Search"
           value={term}
           placeholder="Search in here..."
-          onChange={this.dataSearch}
+          onChange={this.dataSearch.bind(this)}
         />
       </div>
     );

@@ -22,6 +22,7 @@ export default class App extends React.Component {
 
     this.showAddForm = this.showAddForm.bind(this);
     this.closeAddForm = this.closeAddForm.bind(this);
+    this.updateData = this.updateData.bind(this);
   }
 
   loadData() {
@@ -43,7 +44,7 @@ export default class App extends React.Component {
     this.loadData();
   }
 
-  updateData = state => {
+  updateData (state) {
     this.setState(state);
   };
 
