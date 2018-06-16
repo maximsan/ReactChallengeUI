@@ -3,10 +3,10 @@ var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   entry: { bundle: "./src/index.js" },
   output: {
-    path: path.join(__dirname, "dist"),,
+    path: path.join(__dirname, "dist"),
     publicPath: "/",
     filename: "[name].[chunkhash].js"
   },
@@ -46,8 +46,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html"
-    }), 
-    new webpack.DefinePlugin({ //defive windows scope variables for react ensure additional checking in production
+    }),
+    new webpack.DefinePlugin({
+      //defive windows scope variables for react ensure additional checking in production
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
     })
   ]
