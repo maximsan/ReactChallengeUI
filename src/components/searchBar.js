@@ -1,7 +1,7 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  dataSearch(e) {
+  dataSearch = e => {
     const { data, update } = this.props;
     const value = e.target.value.toLowerCase();
 
@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
       active: 0,
       term: value
     });
-  }
+  };
 
   render() {
     const { term } = this.props;

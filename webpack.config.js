@@ -1,6 +1,8 @@
+const webpack = require("webpack");
+
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: ["./src/index.js"],
+  devtool: "inline-source-map",
+  entry: "./src/index.js",
   output: {
     path: __dirname,
     publicPath: "/",
@@ -21,8 +23,9 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".", ".js", ".jsx"]
+    extensions: ["*", ".js", ".jsx"]
   },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     historyApiFallback: true,
     contentBase: "./",
