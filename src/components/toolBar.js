@@ -1,8 +1,7 @@
 import React from "react";
 
-export default ({ update, data, initilData, isSorted }) => {
-
-  const sort = type => {
+const Toolbar = ({ update, data, initilData, isSorted }) => {
+  function sort(type) {
     const issorted = isSorted[type];
 
     let direction = issorted ? 1 : -1;
@@ -35,7 +34,7 @@ export default ({ update, data, initilData, isSorted }) => {
         isSorted: newSorted
       });
     }
-  };
+  }
 
   return (
     <div className="container-fluid">
@@ -72,3 +71,5 @@ export default ({ update, data, initilData, isSorted }) => {
     </div>
   );
 };
+
+export default Toolbar;

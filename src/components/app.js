@@ -8,6 +8,8 @@ import AddUser from "./addUser";
 
 import load from "../actions/load";
 
+const baseUrl = null;
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ export default class App extends React.Component {
 
     this.showAddForm = this.showAddForm.bind(this);
     this.closeAddForm = this.closeAddForm.bind(this);
+    this.updateData = this.updateData.bind(this);
   }
 
   loadData() {
@@ -43,9 +46,9 @@ export default class App extends React.Component {
     this.loadData();
   }
 
-  updateData = state => {
+  updateData(state) {
     this.setState(state);
-  };
+  }
 
   showAddForm() {
     this.setState({
@@ -74,7 +77,7 @@ export default class App extends React.Component {
         </div>
         <div className="row mt-2 mb-2">
           <ToolBar
-            update={this.update}
+            update={this.updateData}
             data={data}
             isSorted={isSorted}
             initialData={this.initialData}
@@ -95,16 +98,15 @@ export default class App extends React.Component {
           <div className="col-sm-4 col-md-3 col-lg-2 active-user">
             <ActiveUser activeUser={activeUser} data={data} />
           </div>
-          {
-            showAddUser ? 
+          {showAddUser ? (
             <AddUser
               update={this.updateData}
               showAddUser={showAddUser}
               onClick={this.closeAddForm}
-              data={data} 
-              />
-              : null
-          }
+              data={data}
+              baseUrl={baseUrl}
+            />
+          ) : null}
         </div>
       </div>
     );

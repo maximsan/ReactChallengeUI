@@ -1,20 +1,19 @@
 import React from "react";
-import $ from 'jquery';
+import $ from "jquery";
 
-import save from '../actions/save';
+import save from "../actions/save";
 
 export default class AddUser extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
+      name: "",
       age: 0,
-      image: '',
-      phone: '',
-      phrase: ''
-    }
+      image: "",
+      phone: "",
+      phrase: ""
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onHandleChangeName = this.onHandleChangeName.bind(this);
@@ -25,23 +24,30 @@ export default class AddUser extends React.Component {
   }
 
   componentDidMount() {
-    $(this.modal).modal('show');
-    $(this.modal).on('hidden.bs.modal', this.props.onClick);
+    $(this.modal).modal("show");
+    $(this.modal).on("hidden.bs.modal", this.props.onClick);
   }
 
   saveUser(baseUrl, formData) {
     const { update, data } = this.props;
+
+    if (!baseUrl && !formData) return;
+
     save(baseUrl, formData)
       .then(user => {
         update({
           data: [...data, user]
         });
       })
-      .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response));
+      .catch(error => console.error("Error:", error))
+      .then(response => console.log("Success:", response));
   }
 
   handleSubmit(e) {
+    const { baseUrl } = this.props;
+
+    if (!baseUrl) return;
+
     e.preventDefault();
     const form = {
       name: this.state.name,
@@ -49,9 +55,10 @@ export default class AddUser extends React.Component {
       phone: this.state.phone,
       phrase: this.state.phrase,
       image: this.state.image
-    }
+    };
+
     this.saveUser(`${baseUrl}/api/users`, form);
-    $(this.modal).modal('hide');
+    $(this.modal).modal("hide");
   }
 
   onHandleChangeName(e) {
@@ -59,7 +66,7 @@ export default class AddUser extends React.Component {
     const name = e.target.value;
     this.setState({
       name
-    })
+    });
   }
 
   onHandleChangeAge(e) {
@@ -67,7 +74,7 @@ export default class AddUser extends React.Component {
     const age = e.target.value;
     this.setState({
       age
-    })
+    });
   }
 
   onHandleChangeImage(e) {
@@ -75,7 +82,7 @@ export default class AddUser extends React.Component {
     const image = e.target.value;
     this.setState({
       image
-    })
+    });
   }
 
   onHandleChangePhone(e) {
@@ -83,7 +90,7 @@ export default class AddUser extends React.Component {
     const phone = e.target.value;
     this.setState({
       phone
-    })
+    });
   }
 
   onHandleChangePhrase(e) {
@@ -91,74 +98,98 @@ export default class AddUser extends React.Component {
     const phrase = e.target.value;
     this.setState({
       phrase
-    })
+    });
   }
 
   render() {
     return (
-      <div className="modal fade user-add-form"
-        ref={modal => this.modal = modal} id="Modal"
+      <div
+        className="modal fade user-add-form"
+        ref={modal => (this.modal = modal)}
+        id="Modal"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-            <div className="modal-header" >
+            <div className="modal-header">
               <h4 className="modal-title form-title">User information</h4>
-              <button type="button" className="close ml-0" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
+              <button
+                type="button"
+                className="close ml-0"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div className="modal-body">
               <form onSubmit={this.handleSubmit} id="formModal">
                 <div className="form-group">
-                  <label htmlFor="recipient-name" className="col-form-label">Name:</label>
+                  <label htmlFor="recipient-name" className="col-form-label">
+                    Name:
+                  </label>
                   <input
                     value={this.state.name}
                     onChange={this.onHandleChangeName}
                     name="Name"
                     type="text"
                     className="form-control"
-                    id="recipient-name" />
+                    id="recipient-name"
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="recipient-age" className="col-form-label">Age:</label>
+                  <label htmlFor="recipient-age" className="col-form-label">
+                    Age:
+                  </label>
                   <input
                     value={this.state.age}
                     onChange={this.onHandleChangeAge}
                     name="Age"
                     type="text"
                     className="form-control"
-                    id="recipient-age" />
+                    id="recipient-age"
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="recipient-animal" className="col-form-label">Favourite animal:</label>
+                  <label htmlFor="recipient-animal" className="col-form-label">
+                    Favourite animal:
+                  </label>
                   <input
                     value={this.state.image}
                     onChange={this.onHandleChangeImage}
                     name="Image"
                     type="text"
                     className="form-control"
-                    id="recipient-animal" />
+                    id="recipient-animal"
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="recipient-phone" className="col-form-label">Phone:</label>
+                  <label htmlFor="recipient-phone" className="col-form-label">
+                    Phone:
+                  </label>
                   <input
                     value={this.state.phone}
                     onChange={this.onHandleChangePhone}
                     name="Phone"
                     type="text"
                     className="form-control"
-                    id="recipient-phone" />
+                    id="recipient-phone"
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="message-phrase" className="col-form-label">Phrase:</label>
+                  <label htmlFor="message-phrase" className="col-form-label">
+                    Phrase:
+                  </label>
                   <textarea
                     value={this.state.phrase}
                     onChange={this.onHandleChangePhrase}
                     name="Phrase"
                     className="form-control"
-                    id="message-phrase"></textarea>
+                    id="message-phrase"
+                  />
                 </div>
               </form>
 
@@ -170,11 +201,9 @@ export default class AddUser extends React.Component {
                   onClick={this.closeAddForm}
                 >
                   Close
-                          </button>
-                <button
-                  className="btn btn-primary"
-                  onClick={this.handleSubmit}
-                >Submit
+                </button>
+                <button className="btn btn-primary" onClick={this.handleSubmit}>
+                  Submit
                 </button>
               </div>
             </div>
