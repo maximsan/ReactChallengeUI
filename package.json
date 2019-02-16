@@ -4,12 +4,15 @@
   "main": "index.js",
   "author": "maximsan",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
+    "start": "webpack-dev-server --open --progress --colors --config ./webpack.config.js --mode development",
+    "build": "webpack --mode production",
+    "test": "mocha --compilers js:@babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
     "bootstrap": "^4.0.0",
     "css-loader": "^0.28.11",
     "dreamjs": "^0.1.8",
@@ -18,25 +21,27 @@
     "jsonfile": "^4.0.0",
     "lodash": "^4.17.10",
     "popper.js": "^1.12.9",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "style-loader": "^0.21.0"
   },
   "devDependencies": {
-    "babel-core": "^6.2.1",
-    "babel-loader": "^6.2.0",
-    "babel-preset-env": "^1.1.4",
-    "babel-preset-react": "^6.1.18",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
-    "webpack": "^2.2.0-rc.0",
-    "webpack-dev-middleware": "^1.9.0",
-    "webpack-dev-server": "^2.2.0-rc.0"
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "react-hot-loader": "^4.6.5",
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/maximsan/ReactChallengeUI.git"
-  }
+  },
+  "homepage": "https://maximsan.github.io/ReactChallengeUI"
 }

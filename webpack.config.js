@@ -1,5 +1,7 @@
+const webpack = require("webpack");
+
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   entry: ["./src/index.js"],
   output: {
     path: __dirname,
@@ -10,11 +12,9 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
-        query: {
-          presets: ["react", "es2015", "stage-1"]
-        }
+        loader: "babel-loader"
       },
       {
         use: ["style-loader", "css-loader"],
@@ -23,8 +23,9 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".", ".js", ".jsx"]
+    extensions: ["*", ".js", ".jsx"]
   },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     historyApiFallback: true,
     contentBase: "./",
